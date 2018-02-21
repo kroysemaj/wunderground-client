@@ -36,12 +36,11 @@ class ContentTabs extends React.Component{
           <Tab>Current Temperature</Tab>
           <Tab>10 Day Temperatures</Tab>
         </TabList>
+        <TabPanel>
           <h2>Current Conditions</h2>
           <h1 className="temp">{ this.state.current.temp }</h1>
           <img src={this.state.current.icon} />
           <h3>Feels like: { this.state.current.feelsLike }</h3>
-        <TabPanel>
-          
         </TabPanel>
         <TabPanel>
           <h2>Any content 2</h2>
