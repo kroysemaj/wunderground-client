@@ -11,8 +11,14 @@ class ContentTabs extends React.Component{
     super(props);
     this.state = {
       current: {
-        temp: '-',
-        feelsLike: '-',
+        temp: '',
+        feelsLike: '',
+        icon: ''
+      },
+      tenDay: {
+        day: '',
+        low: '',
+        high: '',
         icon: ''
       }
     }
@@ -20,8 +26,8 @@ class ContentTabs extends React.Component{
       .then((response) => {
         this.setState({
           current: {
-            temp: response.temp,
-            feelsLike: response.feelLike,
+            temp: response.temp + '°',
+            feelsLike: response.feelLike + '°',
             icon: response.icon
           }
         })
@@ -32,6 +38,7 @@ class ContentTabs extends React.Component{
   render(){
     return ( 
       <Tabs className="Tabs"  >
+        <h1>{ this.state.location }</h1>
         <TabList>
           <Tab>Current Temperature</Tab>
           <Tab>10 Day Temperatures</Tab>
