@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ContentTabs from './ContentTabs'
+import ContentTabs from './tabs/ContentTabs'
 
 class App extends Component {
   render() {
