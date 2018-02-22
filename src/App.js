@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ContentTabs from './tabs/ContentTabs'
 
@@ -8,8 +7,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <img src="http://icons.wxug.com/graphics/wu2/logo_130x80.png" className="App-logo" alt="logo" />
+          <h1 className="App-title">What's the Weather?</h1>
         </header>
         <ContentTabs />
       </div>
