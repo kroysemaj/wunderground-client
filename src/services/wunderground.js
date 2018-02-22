@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-let tenDay  = {};
 const API_KEY = '845c01b7b50bde40'; // I know, I know. API key in the client is bad. Mea Culpa.
 
 function getCurrentForecast(coords){
