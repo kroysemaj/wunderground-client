@@ -38,7 +38,10 @@ class ContentTabs extends React.Component{
     foreman
       .get10Day()
       .then( (response) => {
-        console.log("10 day response: ", response);
+        const tenDayListItems = this.renderListItem(response); 
+        this.setState({
+          tenDay: tenDayListItems
+        });
       });
     
   }
@@ -58,12 +61,29 @@ class ContentTabs extends React.Component{
           <h3>Feels like: { this.state.current.feelsLike }</h3>
         </TabPanel>
         <TabPanel>
-          <h2>Any content 2</h2>
-          <button onClick= { () => console.log() } >Click for More Stuff</button>
+          <h2>10 Day Forecast</h2>
+          <ul>
+            { this.state.tenDay }
+          </ul>
         </TabPanel>
       </Tabs>
     )
   }
+
+  renderListItem(forecasts){
+    return forecasts.map( (forecast, i) => {
+      return (
+        <li key={ `${forecast.period}-${forecast.epoch}` } className="ten-day-forecast" >
+          <span className="ten-day-day">{ forecast.day }</span>
+          <span className="ten-day-low">{ forecast.low }</span>
+          <span className="ten-day-high">{ forecast.high }</span>
+          <img alt={ forecast.iconText } src={forecast.icon} />
+        </li>
+      );
+    });
+  }
 }
+
+
 
 export default ContentTabs;
