@@ -35,7 +35,7 @@ function get10Day(){
               return {
                 period: forecast.period,
                 epoch: forecast.date.epoch,
-                date: forecast.date.weekday,
+                date: forecast.date.weekday_short,
                 low: forecast.low.fahrenheit,
                 high: forecast.high.fahrenheit,
                 icon: forecast.icon_url,

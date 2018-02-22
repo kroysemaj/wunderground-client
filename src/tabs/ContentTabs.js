@@ -14,13 +14,7 @@ class ContentTabs extends React.Component{
         icon: '',
         iconText: ''
       },
-      tenDay: {
-        day: '',
-        low: '',
-        high: '',
-        icon: '',
-        iconText: ''
-      }
+      tenDay: []
     }
     foreman
       .getCurrent()
@@ -62,9 +56,19 @@ class ContentTabs extends React.Component{
         </TabPanel>
         <TabPanel>
           <h2>10 Day Forecast</h2>
-          <ul>
-            { this.state.tenDay }
-          </ul>
+          <table>
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Low</th>
+                <th>High</th>
+                <th>Precip.</th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.state.tenDay }
+            </tbody>
+          </table>
         </TabPanel>
       </Tabs>
     )
@@ -73,12 +77,12 @@ class ContentTabs extends React.Component{
   renderListItem(forecasts){
     return forecasts.map( (forecast, i) => {
       return (
-        <li key={ `${forecast.period}-${forecast.epoch}` } className="ten-day-forecast" >
-          <span className="ten-day-day">{ forecast.day }</span>
-          <span className="ten-day-low">{ forecast.low }</span>
-          <span className="ten-day-high">{ forecast.high }</span>
-          <img alt={ forecast.iconText } src={forecast.icon} />
-        </li>
+        <tr key={ `${forecast.period}-${forecast.epoch}` } className="tabs-tr" >
+          <td className="tabs-td day">{ forecast.date }</td>
+          <td className="tabs-td low">{ forecast.low }</td>
+          <td className="tabs-td high">{ forecast.high }</td>
+          <td className="tabs-td precip"><img alt={ forecast.iconText } src={forecast.icon} /></td>
+        </tr>
       );
     });
   }
