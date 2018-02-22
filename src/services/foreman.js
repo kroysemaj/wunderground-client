@@ -3,13 +3,10 @@ import wunderground from './wunderground';
 
 export default { getCurrent, get10Day };
 
-let loc;
-
 function getCurrent(){
   console.log('getting current');
   return  location()
           .then( (position) => {
-            console.log( 'position: ', position);
             return wunderground.getCurrentForecast(position.coords);
           })
           .then ((response) => {
@@ -30,12 +27,22 @@ function get10Day(){
   console.log('getting 10 day');
   return  location()
           .then( (position) => {
-            console.log('position: ', position);
             return wunderground.get10DayForecast(position.coords);
           })
           .then( (response) => {
             const forecasts = response.data.forecast.simpleforecast.forecastday;
-            return forecasts;
+            const tenDay = forecasts.map( ( forecast ) => {
+              return {
+                period: forecast.period,
+                epoch: forecast.date.epoch,
+                date: forecast.date.weekday,
+                low: forecast.low.fahrenheit,
+                high: forecast.high.fahrenheit,
+                icon: forecast.icon_url,
+                iconText: forecast.icon
+              };
+            });
+            return tenDay;
           })
           .catch( (err) => console.error(err) );
 }
