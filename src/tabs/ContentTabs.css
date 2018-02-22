@@ -1,3 +1,15 @@
 .Tabs{
-
+  width: 30%;
+  margin: 0 auto;
 }
+
+.Tabs table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+.tabs-tr {
+  border-top: solid thin;
+}
+
