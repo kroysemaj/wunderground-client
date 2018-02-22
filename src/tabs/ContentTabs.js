@@ -2,8 +2,6 @@ import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './ContentTabs.css'
-import wunderground from '../services/wunderground';
-import location from '../services/location';
 import foreman from '../services/foreman';
 
 class ContentTabs extends React.Component{
@@ -13,25 +11,35 @@ class ContentTabs extends React.Component{
       current: {
         temp: '',
         feelsLike: '',
-        icon: ''
+        icon: '',
+        iconText: ''
       },
       tenDay: {
         day: '',
         low: '',
         high: '',
-        icon: ''
+        icon: '',
+        iconText: ''
       }
     }
-    foreman.getCurrent()
+    foreman
+      .getCurrent()
       .then((response) => {
         this.setState({
           current: {
             temp: response.temp + '°',
             feelsLike: response.feelLike + '°',
-            icon: response.icon
+            icon: response.icon,
+            iconText: response.iconText
           }
         })
-      })
+      });
+
+    foreman
+      .get10Day()
+      .then( (response) => {
+        console.log("10 day response: ", response);
+      });
     
   }
 
@@ -46,12 +54,12 @@ class ContentTabs extends React.Component{
         <TabPanel>
           <h2>Current Conditions</h2>
           <h1 className="temp">{ this.state.current.temp }</h1>
-          <img src={this.state.current.icon} />
+          <img alt={ this.state.current.iconText } src={this.state.current.icon} />
           <h3>Feels like: { this.state.current.feelsLike }</h3>
         </TabPanel>
         <TabPanel>
           <h2>Any content 2</h2>
-          <button onClick= { () => console.log(wunderground.get10DayForecast()) } >Click for More Stuff</button>
+          <button onClick= { () => console.log() } >Click for More Stuff</button>
         </TabPanel>
       </Tabs>
     )
