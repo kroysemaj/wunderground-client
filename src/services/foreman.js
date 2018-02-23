@@ -6,9 +6,11 @@ export default { getCurrent, get10Day };
 function getCurrent(){
   console.log('getting current');
   return  location()
-          .then( (position) => {
-            return wunderground.getCurrentForecast(position.coords);
-          })
+          .then( 
+            (position) => {
+              return wunderground.getCurrentForecast(position.coords);
+            }, 
+            () => wunderground.getCurrentForecast() ) //On a locations rejection, call using default coords
           .then ((response) => {
             const weather = response.data.current_observation;
             const curr =  {
@@ -26,9 +28,11 @@ function getCurrent(){
 function get10Day(){
   console.log('getting 10 day');
   return  location()
-          .then( (position) => {
-            return wunderground.get10DayForecast(position.coords);
-          })
+          .then( 
+            (position) => {
+              return wunderground.get10DayForecast(position.coords);
+            }, 
+            () => wunderground.get10DayForecast() ) //On a locations rejection, call using default coords
           .then( (response) => {
             const forecasts = response.data.forecast.simpleforecast.forecastday;
             const tenDay = forecasts.map( ( forecast ) => {
