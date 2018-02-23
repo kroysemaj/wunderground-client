@@ -13,13 +13,7 @@ function getCurrent(){
               () => wunderground.getCurrentForecast() ) //On a locations rejection, call using default coords
             .then ((response) => {
               const weather = response.data.current_observation;
-              const curr =  {
-                temp: parseInt(weather.temp_f, 10),
-                feelLike: weather.feelslike_f,
-                icon: weather.icon_url,
-                iconText: weather.icon,
-              };
-              return curr;
+              return prepareCurrentData(weather);
             })
             .catch( (err)=> console.error(err.message) );
 }
@@ -27,27 +21,20 @@ function getCurrent(){
 function get10Day(){
   console.log('getting 10 day');
   return  location()
-            .then( 
-              (position) => {
-                return wunderground.get10DayForecast(position.coords);
-              }, 
-              () => wunderground.get10DayForecast() ) //On a locations rejection, call using default coords
+            .then( tenDaySuccess, tenDayReject)
             .then( (response) => {
               const forecasts = response.data.forecast.simpleforecast.forecastday;
-              const tenDay = forecasts.map( ( forecast ) => {
-                return {
-                  period: forecast.period,
-                  epoch: forecast.date.epoch,
-                  date: forecast.date.weekday_short,
-                  low: forecast.low.fahrenheit,
-                  high: forecast.high.fahrenheit,
-                  icon: forecast.icon_url,
-                  iconText: forecast.icon
-                };
-              });
-              return tenDay;
+              return prepare10DayData(forecasts);
             })
             .catch( (err) => console.error(err) );
+}
+
+function tenDaySuccess(position) {
+  return wunderground.get10DayForecast(position.coords);
+}
+
+function tenDayReject() {
+  return wunderground.get10DayForecast(); //On a locations rejection, call using default coords
 }
 
 function geoLookup(){
@@ -76,4 +63,27 @@ function prepareLookupData(locationData) {
     location.state = locationData.state;
   }
   return location; 
+}
+
+function prepare10DayData(forecasts) {
+  return forecasts.map( ( forecast ) => {
+    return {
+      period: forecast.period,
+      epoch: forecast.date.epoch,
+      date: forecast.date.weekday_short,
+      low: forecast.low.fahrenheit,
+      high: forecast.high.fahrenheit,
+      icon: forecast.icon_url,
+      iconText: forecast.icon
+    };
+  });
+}
+
+function prepareCurrentData(weather) {
+  return {
+    temp: parseInt(weather.temp_f, 10),
+    feelLike: weather.feelslike_f,
+    icon: weather.icon_url,
+    iconText: weather.icon,
+  };
 }
