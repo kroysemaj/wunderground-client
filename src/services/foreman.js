@@ -11,7 +11,6 @@ function getCurrent(){
             .catch( (err)=> console.error(err.message) );
 }
 
-
 function get10Day(){
   console.log('getting 10 day');
   return  location()
@@ -23,32 +22,13 @@ function get10Day(){
 function geoLookup(){
   console.log('getting location');
   return  location()
-            .then( 
-              (position) => {
-                return wunderground.getLocationFromCoords(position.coords);
-              }, 
-              () => wunderground.getLocationFromCoords() ) //On a locations rejection, call using default coords
-              .then( (response) => {
-              const locationData = response.data.location;
-              return prepareLookupData(locationData);
-            })
+            .then( geoCodeSuccess, geoCodeReject) 
+            .then( prepareLookupData )
             .catch( (err) => console.error(err) );
-          }
-
-          function prepareLookupData(locationData) {
-            console.log("Location Data: ", locationData);
-  let location = {
-    city: locationData.city
-  }
-  if(locationData.country_name !== 'USA'){
-    location.state = locationData.country_name; // for international cities, "state" becomes country. Ex Paris, France
-  } else {
-    location.state = locationData.state;
-  }
-  return location; 
 }
 
-/* Getting Current Conditions callbacks */
+/* CALLBACKS */
+/* Current Conditions */
 function currrentConditionsSuccess(position){
   return wunderground.getCurrentForecast(position.coords);
 }
@@ -67,7 +47,7 @@ function prepareCurrentData(response) {
   };
 }
 
-/* Getting the 10 day forecast callbacks */
+/* 10 day forecast */
 function tenDaySuccess(position) {
   return wunderground.get10DayForecast(position.coords);
 }
@@ -89,4 +69,27 @@ function prepare10DayData(response) {
       iconText: forecast.icon
     };
   });
+}
+
+/* Geolookup */
+function geoCodeSuccess(position){
+  return wunderground.getLocationFromCoords(position.coords);
+}
+
+function geoCodeReject() {
+  return wunderground.getLocationFromCoords(); //On a locations rejection, call using default coords
+}
+
+function prepareLookupData(response) {
+  const locationData = response.data.location;
+  console.log("Location Data: ", locationData);
+  let location = {
+    city: locationData.city
+  }
+  if(locationData.country_name !== 'USA'){
+    location.state = locationData.country_name; // for international cities, "state" becomes country. Ex Paris, France
+  } else {
+    location.state = locationData.state;
+  }
+  return location; 
 }
