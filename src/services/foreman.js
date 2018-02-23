@@ -6,26 +6,24 @@ export default { getCurrent, get10Day, geoLookup };
 function getCurrent(){
   console.log('getting current');
   return  location()
-            .then( 
-              (position) => {
-                return wunderground.getCurrentForecast(position.coords);
-              }, 
-              () => wunderground.getCurrentForecast() ) //On a locations rejection, call using default coords
-            .then ((response) => {
-              const weather = response.data.current_observation;
-              return prepareCurrentData(weather);
-            })
+            .then( currrentConditionsSuccess, currentConditionsReject) 
+            .then ( prepareCurrentData )
             .catch( (err)=> console.error(err.message) );
+}
+
+function currrentConditionsSuccess(position){
+  return wunderground.getCurrentForecast(position.coords);
+}
+
+function currentConditionsReject() {
+  return wunderground.getCurrentForecast(); //On a locations rejection, call using default coords
 }
 
 function get10Day(){
   console.log('getting 10 day');
   return  location()
             .then( tenDaySuccess, tenDayReject)
-            .then( (response) => {
-              const forecasts = response.data.forecast.simpleforecast.forecastday;
-              return prepare10DayData(forecasts);
-            })
+            .then( prepare10DayData )
             .catch( (err) => console.error(err) );
 }
 
@@ -65,7 +63,8 @@ function prepareLookupData(locationData) {
   return location; 
 }
 
-function prepare10DayData(forecasts) {
+function prepare10DayData(response) {
+  const forecasts = response.data.forecast.simpleforecast.forecastday;
   return forecasts.map( ( forecast ) => {
     return {
       period: forecast.period,
@@ -79,7 +78,8 @@ function prepare10DayData(forecasts) {
   });
 }
 
-function prepareCurrentData(weather) {
+function prepareCurrentData(response) {
+  const weather = response.data.current_observation;
   return {
     temp: parseInt(weather.temp_f, 10),
     feelLike: weather.feelslike_f,
