@@ -17,6 +17,16 @@ class ContentTabs extends React.Component{
       tenDay: [],
       location: ''
     }
+
+    foreman
+      .geoLookup()
+      .then( (response) => {
+        console.log('GEOLOOKUP: ', response)
+        this.setState({
+          location: response.city + ", " + response.state
+        })
+      });
+
     foreman
       .getCurrent()
       .then((response) => {
@@ -44,18 +54,19 @@ class ContentTabs extends React.Component{
   render(){
     return ( 
       <Tabs className="Tabs"  >
-        { this.state.location }
         <TabList>
           <Tab>Current Temperature</Tab>
           <Tab>10 Day Temperatures</Tab>
         </TabList>
         <TabPanel>
+          <h1>{ this.state.location }</h1>
           <h2>Current Conditions</h2>
           <h1 className="temp">{ this.state.current.temp }</h1>
           <img alt={ this.state.current.iconText } src={this.state.current.icon} />
           <h3>Feels like: { this.state.current.feelsLike }</h3>
         </TabPanel>
         <TabPanel>
+          <h1>{ this.state.location }</h1>
           <h2>10 Day Forecast</h2>
           <table>
             <thead>
