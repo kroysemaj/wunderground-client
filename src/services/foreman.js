@@ -11,13 +11,6 @@ function getCurrent(){
             .catch( (err)=> console.error(err.message) );
 }
 
-function currrentConditionsSuccess(position){
-  return wunderground.getCurrentForecast(position.coords);
-}
-
-function currentConditionsReject() {
-  return wunderground.getCurrentForecast(); //On a locations rejection, call using default coords
-}
 
 function get10Day(){
   console.log('getting 10 day');
@@ -25,14 +18,6 @@ function get10Day(){
             .then( tenDaySuccess, tenDayReject)
             .then( prepare10DayData )
             .catch( (err) => console.error(err) );
-}
-
-function tenDaySuccess(position) {
-  return wunderground.get10DayForecast(position.coords);
-}
-
-function tenDayReject() {
-  return wunderground.get10DayForecast(); //On a locations rejection, call using default coords
 }
 
 function geoLookup(){
@@ -43,15 +28,15 @@ function geoLookup(){
                 return wunderground.getLocationFromCoords(position.coords);
               }, 
               () => wunderground.getLocationFromCoords() ) //On a locations rejection, call using default coords
-            .then( (response) => {
+              .then( (response) => {
               const locationData = response.data.location;
               return prepareLookupData(locationData);
             })
             .catch( (err) => console.error(err) );
-}
+          }
 
-function prepareLookupData(locationData) {
-  console.log("Location Data: ", locationData);
+          function prepareLookupData(locationData) {
+            console.log("Location Data: ", locationData);
   let location = {
     city: locationData.city
   }
@@ -61,6 +46,34 @@ function prepareLookupData(locationData) {
     location.state = locationData.state;
   }
   return location; 
+}
+
+/* Getting Current Conditions callbacks */
+function currrentConditionsSuccess(position){
+  return wunderground.getCurrentForecast(position.coords);
+}
+
+function currentConditionsReject() {
+  return wunderground.getCurrentForecast(); //On a locations rejection, call using default coords
+}
+
+function prepareCurrentData(response) {
+  const weather = response.data.current_observation;
+  return {
+    temp: parseInt(weather.temp_f, 10),
+    feelLike: weather.feelslike_f,
+    icon: weather.icon_url,
+    iconText: weather.icon,
+  };
+}
+
+/* Getting the 10 day forecast callbacks */
+function tenDaySuccess(position) {
+  return wunderground.get10DayForecast(position.coords);
+}
+
+function tenDayReject() {
+  return wunderground.get10DayForecast(); //On a locations rejection, call using default coords
 }
 
 function prepare10DayData(response) {
@@ -76,14 +89,4 @@ function prepare10DayData(response) {
       iconText: forecast.icon
     };
   });
-}
-
-function prepareCurrentData(response) {
-  const weather = response.data.current_observation;
-  return {
-    temp: parseInt(weather.temp_f, 10),
-    feelLike: weather.feelslike_f,
-    icon: weather.icon_url,
-    iconText: weather.icon,
-  };
 }
