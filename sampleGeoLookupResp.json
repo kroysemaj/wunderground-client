@@ -1,0 +1,268 @@
+{
+  "response": {
+    "version": "0.1",
+    "termsofService": "http://www.wunderground.com/weather/api/d/terms.html",
+    "features": {
+      "geolookup": 1
+    }
+  },
+  "location": {
+    "type": "CITY",
+    "country": "US",
+    "country_iso3166": "US",
+    "country_name": "USA",
+    "state": "CA",
+    "city": "San Francisco",
+    "tz_short": "PST",
+    "tz_long": "America/Los_Angeles",
+    "lat": "37.770000",
+    "lon": "-122.390000",
+    "zip": "94158",
+    "magic": "1",
+    "wmo": "99999",
+    "l": "/q/zmw:94158.1.99999",
+    "requesturl": "US/CA/San_Francisco.html",
+    "wuiurl": "https://www.wunderground.com/US/CA/San_Francisco.html",
+    "nearby_weather_stations": {
+      "airport": {
+        "station": [
+          {
+            "city": "Oakland",
+            "state": "CA",
+            "country": "US",
+            "icao": "KOAK",
+            "lat": "37.72000122",
+            "lon": "-122.22000122"
+          },
+          {
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "icao": "KSFO",
+            "lat": "37.61999893",
+            "lon": "-122.37000275"
+          },
+          {
+            "city": "Hayward",
+            "state": "CA",
+            "country": "US",
+            "icao": "KHWD",
+            "lat": "37.65999985",
+            "lon": "-122.12000275"
+          },
+          {
+            "city": "Half Moon Bay",
+            "state": "CA",
+            "country": "US",
+            "icao": "KHAF",
+            "lat": "37.50999832",
+            "lon": "-122.50000000"
+          }
+        ]
+      },
+      "pws": {
+        "station": [
+          {
+            "neighborhood": "Mission Bay Commons",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR1213",
+            "lat": 37.771065,
+            "lon": -122.388206,
+            "distance_km": 0,
+            "distance_mi": 0
+          },
+          {
+            "neighborhood": "Mission Creek",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR1104",
+            "lat": 37.772312,
+            "lon": -122.395493,
+            "distance_km": 0,
+            "distance_mi": 0
+          },
+          {
+            "neighborhood": "South of Market",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR472",
+            "lat": 37.776436,
+            "lon": -122.393166,
+            "distance_km": 0,
+            "distance_mi": 0
+          },
+          {
+            "neighborhood": "Central SOMA",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR1156",
+            "lat": 37.778145,
+            "lon": -122.394989,
+            "distance_km": 1,
+            "distance_mi": 0
+          },
+          {
+            "neighborhood": "SoMa (7th&Brannan) (Prasad)",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR914",
+            "lat": 37.773605,
+            "lon": -122.402252,
+            "distance_km": 1,
+            "distance_mi": 0
+          },
+          {
+            "neighborhood": "Potrero Hill",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR620",
+            "lat": 37.764774,
+            "lon": -122.401283,
+            "distance_km": 1,
+            "distance_mi": 0
+          },
+          {
+            "neighborhood": "Dogpatch",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR666",
+            "lat": 37.759563,
+            "lon": -122.390594,
+            "distance_km": 1,
+            "distance_mi": 0
+          },
+          {
+            "neighborhood": "South Beach - San Francisco Ca.",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR1193",
+            "lat": 37.781834,
+            "lon": -122.391457,
+            "distance_km": 1,
+            "distance_mi": 0
+          },
+          {
+            "neighborhood": "SOMA South Park",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR327",
+            "lat": 37.782135,
+            "lon": -122.393753,
+            "distance_km": 1,
+            "distance_mi": 0
+          },
+          {
+            "neighborhood":
+              "Potrero Hill: Wisconsin St. Meteorological Society",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR698",
+            "lat": 37.758621,
+            "lon": -122.398735,
+            "distance_km": 1,
+            "distance_mi": 0
+          },
+          {
+            "neighborhood": "South Beach",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR474",
+            "lat": 37.783089,
+            "lon": -122.394592,
+            "distance_km": 1,
+            "distance_mi": 0
+          },
+          {
+            "neighborhood": "San Francisco",
+            "city": "Potrero District",
+            "state": "CA",
+            "country": "US",
+            "id": "KCAPOTRE8",
+            "lat": 37.756176,
+            "lon": -122.397766,
+            "distance_km": 1,
+            "distance_mi": 1
+          },
+          {
+            "neighborhood": "Potrero Power Plant",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR1111",
+            "lat": 37.756222,
+            "lon": -122.381958,
+            "distance_km": 1,
+            "distance_mi": 1
+          },
+          {
+            "neighborhood": "Potrero Hill Community Garden",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR1199",
+            "lat": 37.75972,
+            "lon": -122.405197,
+            "distance_km": 1,
+            "distance_mi": 1
+          },
+          {
+            "neighborhood": "Dogpatch",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR1143",
+            "lat": 37.753941,
+            "lon": -122.390793,
+            "distance_km": 1,
+            "distance_mi": 1
+          },
+          {
+            "neighborhood": "Potrero Hill",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR526",
+            "lat": 37.756401,
+            "lon": -122.401459,
+            "distance_km": 1,
+            "distance_mi": 1
+          },
+          {
+            "neighborhood": "Potrero Hill Southern Tip (Makenna)",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR1178",
+            "lat": 37.754978,
+            "lon": -122.398407,
+            "distance_km": 1,
+            "distance_mi": 1
+          },
+          {
+            "neighborhood": "SOMA",
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "US",
+            "id": "KCASANFR131",
+            "lat": 37.778488,
+            "lon": -122.408005,
+            "distance_km": 1,
+            "distance_mi": 1
+          }
+        ]
+      }
+    }
+  }
+}
