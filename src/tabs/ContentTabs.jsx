@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './ContentTabs.css'
 import foreman from '../services/foreman';
+import geolookup from '../services/geolookup';
 
 class ContentTabs extends React.Component{
   constructor(props){
@@ -14,7 +15,8 @@ class ContentTabs extends React.Component{
         icon: '',
         iconText: ''
       },
-      tenDay: []
+      tenDay: [],
+      location: ''
     }
     foreman
       .getCurrent()
@@ -43,7 +45,7 @@ class ContentTabs extends React.Component{
   render(){
     return ( 
       <Tabs className="Tabs"  >
-        <h1>{ this.state.location }</h1>
+        { this.state.location }
         <TabList>
           <Tab>Current Temperature</Tab>
           <Tab>10 Day Temperatures</Tab>
@@ -85,6 +87,10 @@ class ContentTabs extends React.Component{
         </tr>
       );
     });
+  }
+
+  renderLocation(){
+
   }
 }
 
