@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import ContentTabs from './tabs/ContentTabs'
+import ContentTabs from './tabs/ContentTabs.jsx'
 
 class App extends Component {
   render() {
