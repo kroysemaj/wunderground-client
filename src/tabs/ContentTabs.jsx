@@ -2,7 +2,7 @@ import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './ContentTabs.css'
-import foreman from '../services/foreman';
+import controller from '../services/controller';
 
 class ContentTabs extends React.Component{
   constructor(props){
@@ -18,7 +18,7 @@ class ContentTabs extends React.Component{
       location: ''
     }
 
-    foreman
+    controller
       .geoLookup()
       .then( (response) => {
         this.setState({
@@ -26,7 +26,7 @@ class ContentTabs extends React.Component{
         })
       });
 
-    foreman
+    controller
       .getCurrent()
       .then((response) => {
         this.setState({
@@ -39,7 +39,7 @@ class ContentTabs extends React.Component{
         })
       });
 
-    foreman
+    controller
       .get10Day()
       .then( (response) => {
         const tenDayListItems = this.renderListItem(response); 
