@@ -4,7 +4,6 @@ import wunderground from './wunderground';
 export default { getCurrent, get10Day, geoLookup };
 
 function getCurrent(){
-  console.log('getting current');
   return  location()
             .then( currrentConditionsSuccess, currentConditionsReject) 
             .then ( prepareCurrentData )
@@ -12,7 +11,6 @@ function getCurrent(){
 }
 
 function get10Day(){
-  console.log('getting 10 day');
   return  location()
             .then( tenDaySuccess, tenDayReject)
             .then( prepare10DayData )
@@ -20,7 +18,6 @@ function get10Day(){
 }
 
 function geoLookup(){
-  console.log('getting location');
   return  location()
             .then( geoCodeSuccess, geoCodeReject) 
             .then( prepareLookupData )
@@ -82,7 +79,6 @@ function geoCodeReject() {
 
 function prepareLookupData(response) {
   const locationData = response.data.location;
-  console.log("Location Data: ", locationData);
   let location = {
     city: locationData.city
   }

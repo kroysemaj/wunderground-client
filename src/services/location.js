@@ -4,7 +4,6 @@ export default () => {
     navigator.geolocation.getCurrentPosition( 
       (loc) => resolve(loc) , 
       (err) => { 
-        console.log("rejecting: ", err); 
         reject(err)
       });
   });

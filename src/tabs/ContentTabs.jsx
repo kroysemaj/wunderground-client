@@ -21,7 +21,6 @@ class ContentTabs extends React.Component{
     foreman
       .geoLookup()
       .then( (response) => {
-        console.log('GEOLOOKUP: ', response)
         this.setState({
           location: response.city + ", " + response.state
         })
