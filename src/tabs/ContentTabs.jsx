@@ -2,7 +2,7 @@ import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './ContentTabs.css'
-import controller from '../services/controller';
+import controller from '../controller';
 
 class ContentTabs extends React.Component{
   constructor(props){
