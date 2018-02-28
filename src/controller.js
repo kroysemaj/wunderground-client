@@ -1,5 +1,5 @@
-import location from './location';
-import wunderground from './wunderground';
+import location from './services/location';
+import wunderground from './services/wunderground';
 
 export default { getCurrent, get10Day, geoLookup };
 
@@ -38,7 +38,7 @@ function prepareCurrentData(response) {
   const weather = response.data.current_observation;
   return {
     temp: parseInt(weather.temp_f, 10),
-    feelLike: weather.feelslike_f,
+    feelLike: parseInt(weather.feelslike_f),
     icon: weather.icon_url,
     iconText: weather.icon,
   };
