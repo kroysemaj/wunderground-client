@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const API_KEY = '845c01b7b50bde40'; // I know, I know. API key in the client is bad. Mea Culpa.
 
-const defaultCoords = { // Honolulu, HI
-  // latitude: 21.3069,
+const defaultCoords = { 
+  // latitude: 21.3069, // Honolulu, HI
   // longitude: -157.8583
   latitude: 51.4545,  // international test data. Bristol, UK
   longitude: -2.5879
