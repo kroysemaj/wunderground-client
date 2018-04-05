@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import ContentTabs from './tabs/ContentTabs.jsx'
+import ZipCodeForm from './ZipCodeForm.jsx';
 
 class App extends Component {
   render() {
@@ -10,7 +10,7 @@ class App extends Component {
           <img src="http://icons.wxug.com/graphics/wu2/logo_130x80.png" className="App-logo" alt="logo" />
           <h1 className="App-title">What's the Weather?</h1>
         </header>
-        <ContentTabs />
+        <ZipCodeForm />
       </div>
     );
   }

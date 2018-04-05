@@ -7,6 +7,9 @@ import controller from '../controller';
 class ContentTabs extends React.Component{
   constructor(props){
     super(props);
+
+    console.log(props);
+
     this.state = {
       current: {
         temp: '',
@@ -26,18 +29,19 @@ class ContentTabs extends React.Component{
         })
       });
 
-    controller
-      .getCurrent()
-      .then((response) => {
-        this.setState({
-          current: {
-            temp: response.temp + '°',
-            feelsLike: response.feelLike + '°',
-            icon: response.icon,
-            iconText: response.iconText
-          }
-        })
-      });
+    // controller
+    //   .getCurrent()
+    //   .then((response) => {
+    //     this.setState({
+    //       current: {
+    //         temp: response.temp + '°',
+    //         feelsLike: response.feelLike + '°',
+    //         icon: response.icon,
+    //         iconText: response.iconText,
+    //         umbrella: this.doINeedAnUmbrella(response.umbrellaNeeded)
+    //       }
+    //     })
+    //   });
 
     controller
       .get10Day()
@@ -58,11 +62,12 @@ class ContentTabs extends React.Component{
           <Tab>10 Day Temperatures</Tab>
         </TabList>
         <TabPanel>
-          <h1>{ this.state.location }</h1>
+          <h1>{ this.props.location }</h1>
           <h2>Current Conditions</h2>
-          <h1 className="temp">{ this.state.current.temp }</h1>
-          <img alt={ this.state.current.iconText } src={this.state.current.icon} />
-          <h3>Feels like: { this.state.current.feelsLike }</h3>
+          <h1 className="temp">{ this.props.current.temp }</h1>
+          <img alt={ this.props.current.iconText } src={this.props.current.icon} />
+          <h3>Feels like: { this.props.current.feelsLike }</h3>
+          <h3>Do I need an umbrella? { this.props.current.umbrella }</h3>
         </TabPanel>
         <TabPanel>
           <h1>{ this.state.location }</h1>
@@ -98,9 +103,9 @@ class ContentTabs extends React.Component{
     });
   }
 
-  renderLocation(){
-
-  }
+  // doINeedAnUmbrella(precipInInches){
+  //   return precipInInches > 0 ? "Yes" : "No";
+  // }
 }
 
 

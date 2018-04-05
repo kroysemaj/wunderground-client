@@ -16,6 +16,10 @@ function getCurrentForecast(coords){
   return axios.get(`http://api.wunderground.com/api/${API_KEY}/conditions/q/${coords.latitude},${coords.longitude}.json`);
 }
 
+function getCurrentForecastWithZip(zipCode){
+  return axios.get(`http://api.wunderground.com/api/${API_KEY}/conditions/q/${zipCode}.json`);
+}
+
 function get10DayForecast(coords){
   if (!coords){
     coords = defaultCoords;
@@ -30,4 +34,4 @@ function getLocationFromCoords(coords){
   return axios.get(`http://api.wunderground.com/api/${API_KEY}/geolookup/q/${coords.latitude},${coords.longitude}.json`);
 }
 
-export default { getCurrentForecast, get10DayForecast, getLocationFromCoords }; 
+export default { getCurrentForecast, get10DayForecast, getLocationFromCoords, getCurrentForecastWithZip }; 

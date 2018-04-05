@@ -3,9 +3,10 @@ import wunderground from './services/wunderground';
 
 export default { getCurrent, get10Day, geoLookup };
 
-function getCurrent(){
-  return  location()
-            .then( currrentConditionsSuccess, currentConditionsReject) 
+function getCurrent(zipCode){
+  console.log('getting Current stuff for : ', zipCode);
+  return  wunderground.getCurrentForecastWithZip(zipCode)
+            // .then( currrentConditionsSuccess, currentConditionsReject) 
             .then ( prepareCurrentData )
             .catch( (err)=> console.error(err.message) );
 }
@@ -26,21 +27,23 @@ function geoLookup(){
 
 /* CALLBACKS */
 /* Current Conditions */
-function currrentConditionsSuccess(position){
-  return wunderground.getCurrentForecast(position.coords);
-}
+// function currrentConditionsSuccess(position){ 
+//   return wunderground.getCurrentForecast(position.coords);
+// }
 
-function currentConditionsReject() {
-  return wunderground.getCurrentForecast(); //On a locations rejection, call using default coords
-}
+
+// function currentConditionsReject() {
+//   return wunderground.getCurrentForecast(); //On a locations rejection, call using default coords
+// }
 
 function prepareCurrentData(response) {
   const weather = response.data.current_observation;
   return {
     temp: parseInt(weather.temp_f, 10),
-    feelLike: parseInt(weather.feelslike_f),
+    feelLike: parseInt(weather.feelslike_f, 10),
     icon: weather.icon_url,
     iconText: weather.icon,
+    umbrellaNeeded: parseFloat(weather.precip_today_in)
   };
 }
 
